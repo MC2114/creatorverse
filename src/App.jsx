@@ -7,6 +7,7 @@ import ViewCreator from './pages/ViewCreator'
 import { supabase } from './client'
 import '@picocss/pico'
 import './App.css'
+import Card from './components/Card'
 
 const App = () => {
   const [creators, setCreators] = useState([])
@@ -15,7 +16,7 @@ const App = () => {
 
     const fetchCreators = async () => {
       const { data, error } = await supabase
-        .from('creators_2025')
+        .from('creators')
         .select()
         .order('created_at', { ascending: true })
 
@@ -54,7 +55,7 @@ const App = () => {
   return (
     <div className="App">
 
-      <header>
+      {/* <header>
         <h1>Creatorverse</h1>
         <nav>
           <ul>
@@ -62,8 +63,7 @@ const App = () => {
             <li><a href="/new" role="button">Add a Creator</a></li>
           </ul>
         </nav>
-      </header>
-
+      </header> */}
       <main> {element} </main>
 
     </div>

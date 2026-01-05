@@ -1,23 +1,33 @@
 import React, { useState, useEffect } from 'react'
 import Card from '../components/Card'
+import { supabase } from '../client'
 
-const ShowCreators = (props) => {
-
+function ShowCreators(props) {
     const [creators, setCreators] = useState([])
-
     useEffect(() => {
-        setCreators(props.data)
-    }, [props])
+        const fetchCreators = async () => {
+            const { data, error } = await supabase
+                .from("creator")
+                .select("*")
+                .order('created_at', { ascending: true })
+
+            if (!error) setCreators(data)
+        }
+        fetchCreators()
+    }, [])
 
     return (
-        <section className="ShowCreators">
-            {
-                creators && creators.length > 0 ?
-                    creators.map((creator, index) =>
-                        <Card key={creator.id} id={creator.id} name={creator.name} youtube={creator.youtube} twitter={creator.twitter} instagram={creator.instagram} description={creator.description} image={creator.image} />
-                    ) : <h3>{'No Creators Yet 😞'}</h3>
-            }
-        </section>
+        <div className='show-creators'>
+            <div className='creator-grid'>
+                {creators.length === 0 ? (
+                    <p>No creators yet. Create one!</p>
+                ) :
+                    creators.map((creator) => (
+                        <Card creator={creator} key={creator.id} />
+                    ))
+                }
+            </div>
+        </div >
     )
 }
 

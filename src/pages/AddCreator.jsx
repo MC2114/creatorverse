@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { supabase } from '../client'
 
 const AddCreator = () => {
-
     const [creator, setCreator] = useState({ name: "", youtube: "", twitter: "", instagram: "", description: "", image: "" })
 
     const handleChange = (event) => {
@@ -19,7 +18,7 @@ const AddCreator = () => {
         event.preventDefault()
 
         const { error } = await supabase
-            .from('creators_2025')
+            .from('creator')
             .insert({ name: creator.name, youtube: creator.youtube, twitter: creator.twitter, instagram: creator.instagram, description: creator.description, image: creator.image })
             .select()
 

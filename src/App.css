@@ -1,10 +1,22 @@
+@import "@picocss/pico/css/pico.min.css";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&family=Sono:wght@800&display=swap');
 
 #root {
-  font-family: Poppins, Verdana, sans-serif;
+  font-family: Poppins, sans-serif;
+
+  --primary: #51e2f5;
+  --primary-hover: #43739d;
+  --primary-focus: rgba(61, 105, 143, 0.25);
+
   --border-width: 2px;
-  --border-radius: 0.3rem;
-  background-color: rgb(0, 6, 13);
+  --border-radius: 0.4rem;
+  background-color: #00060d;
+}
+
+main {
+  margin-block: 3rem;
+  display: flex;
+  justify-content: center;
 }
 
 [data-theme=light],
@@ -82,6 +94,8 @@ main {
 /* creator card */
 
 .Card {
+  position: relative;
+  overflow: hidden;
   border: 2px solid var(--muted-color);
   background-size: cover;
   background-position-y: 20%;
@@ -133,7 +147,7 @@ article {
   font-size: 0.8em;
   display: -webkit-box;
   overflow: hidden;
-  -webkit-line-clamp: 3;
+  -line-camp: 3;
   -webkit-box-orient: vertical;
 }
 
